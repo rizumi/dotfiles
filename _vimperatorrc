@@ -1,0 +1,29 @@
+"3.12.0 (created: 2016/02/28 22:07:56)
+
+source! "C:\\Users\\izumi\\_vimperatorrc.local"
+
+" vim: set ft=vimperator:
+
+" j/k でのスクロール幅を 1行 から 5行 に変更
+" map j 3jとかすると無限ループして死ぬ
+map j 3<C-e>
+map k 3<C-y>
+
+" Hintモードでアルファベット使用
+"set hintchars=jfnvurhgytbkdmcielsxoe
+" commandモードでIMEオフ
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+"============================
+" colorscheme
+"============================
+" デフォルトのヒント派手すぎ
+hi Hint font-family: Arial; font-size: 21px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: #33cccc;
+hi HintElem color: gray; background-color: #a1e4e6;
+hi HintActive color: black; background-color: #ff8700;
+
+" デフォルトのエラー赤くてこわい＞＜
+hi ErrorMsg color:white; background-color: #ec6aa1;
+
+" ddでタブを閉じる, dでは何もしない
+no dd :tabclose<CR>
+map d <NOP>
