@@ -13,6 +13,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'itchyny/lightline.vim'
 
 call neobundle#end()
 
@@ -20,7 +21,11 @@ filetype plugin indent on
 
 NeoBundleCheck
 
+"カラースキーム設定
+autocmd ColorScheme * highlight Normal ctermbg=none
+autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
+
 set number
 set title
 set showmatch
@@ -31,14 +36,16 @@ set nobackup
 set noswapfile
 set autoread
 set showcmd
+set backspace=indent,eol,start
 
+"タブ行を常に表示
+set showtabline=2
 
 "検索の大文字/小文字の区別
 set ignorecase
 set smartcase
 set wrapscan
 
-"インクリメンタルサーチ
 set incsearch
 
 set hlsearch
@@ -46,7 +53,6 @@ nnoremap <F3> :noh<CR>
 
 set ruler
 
-"カーソルを表示行で移動
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
@@ -56,7 +62,7 @@ nnoremap <Up> gk
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 "statusline
-"set laststatus=2
+set laststatus=2
 "set statusline=%<%f\ %h%m%r{fugitive#statusline()}%=%-14.(%l,%c%V)\ \[ENC=%{&fileencoding}]%P
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -72,10 +78,10 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-                    \ }
+   \ 'default' : '',
+   \ 'vimshell' : $HOME.'/.vimshell_hist',
+   \ 'scheme' : $HOME.'/.gosh_completions'
+   \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
