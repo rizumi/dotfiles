@@ -1,42 +1,75 @@
 if has('vim_starting')
-	set nocompatible
-
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set encoding=utf-8
+  scriptencoding utf-8
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Plugin管理
+if &compatible
+  set nocompatible
+endif
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'itchyny/lightline.vim'
+if dein#load_state(expand('~/.vim/bundles'))
+  call dein#begin(expand('~/.vim/bundles'))
 
-call neobundle#end()
+  call dein#add(expand('~/.vim/bundles/repos/github.com/Shougo/dein.vim'))
+  call dein#add('Shougo/neocomplete')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('tomasr/molokai')
+  call dein#add('lambdalisue/gina.vim')
+  call dein#add('rhysd/vim-clang-format')
+  call dein#add('scrooloose/nerdtree')
+
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
-
-NeoBundleCheck
 
 "カラースキーム設定
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
 
-set number
-set title
-set showmatch
+" シンタックスハイライトを有効
 syntax on 
-set tabstop=4
+" ファイルタイプ別インデント・プラグイン有効化
+filetype indent plugin on
+
+
+" 行番号
+set number
+
+" コンソールのタイトル表示
+set title
+
+" 対応するカッコの強調表示
+set showmatch
+
+" インデント設定
+set expandtab
+set tabstop=2
+set shiftwidth=2
 set smartindent
+
+" バックアップファイル設定
 set nobackup
 set noswapfile
+
+" 外部で変更された場合に読み直す
 set autoread
+
+" コマンド表示
 set showcmd
+
+" バックスペース
 set backspace=indent,eol,start
+
+" タグ設定
+set tags=./tags;
+
+" タブによるファイル名補完
+set wildmenu
 
 "タブ行を常に表示
 set showtabline=2
@@ -46,24 +79,38 @@ set ignorecase
 set smartcase
 set wrapscan
 
+" インクリメンタルサーチ有効
 set incsearch
-
+" ハイライトサーチ
 set hlsearch
 nnoremap <F3> :noh<CR>
 
+" カーソル位置を表示
 set ruler
 
+"statusline
+set laststatus=2
+
+" ビープ音を無効化
+set visualbell t_vb=
+set noerrorbells
+
+" 移動
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up> gk
 
+" タグジャンプ
+nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <C-K> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+
+" タブ切り替え
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+
 "NERDTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-"statusline
-set laststatus=2
-"set statusline=%<%f\ %h%m%r{fugitive#statusline()}%=%-14.(%l,%c%V)\ \[ENC=%{&fileencoding}]%P
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -137,23 +184,5 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-		set conceallevel=2 concealcursor=i
-endif
-
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+" vimrcによる悪意のあるコマンド実行を防ぐ
+set secure
