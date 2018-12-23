@@ -1,0 +1,14 @@
+set incsearch
+set hlsearch
+
+set ignorecase
+set smartcase
+
+nnoremap gT :xccmd selectPreviousTab<CR>
+nnoremap gt :xccmd selectNextTab<CR>
+
+nnoremap <C-e> :xccmd toggleNavigatorsVisibility<CR>
+nnoremap <C-n> :xccmd toggleDebuggerVisibility<CR>
+nnoremap <C-l> :xccmd toggleUtilitiesVisibility<CR>
+
+nnoremap <Space><Space> :xccmd toggleBreakpointAtCurrentLine<Cr>
