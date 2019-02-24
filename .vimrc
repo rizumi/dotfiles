@@ -13,18 +13,27 @@ if dein#load_state(expand('~/.vim/bundles'))
   call dein#begin(expand('~/.vim/bundles'))
 
   call dein#add(expand('~/.vim/bundles/repos/github.com/Shougo/dein.vim'))
-  call dein#add('Shougo/neocomplete')
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
+
+  " deoplete
+  "call dein#add('Shougo/deoplete.nvim')
+  "if !has('nvim')
+  "  call dein#add('roxma/nvim-yarp')
+  "  call dein#add('roxma/vim-hug-neovim-rpc')
+  "endif
+
   call dein#add('itchyny/lightline.vim')
   call dein#add('tomasr/molokai')
   call dein#add('lambdalisue/gina.vim')
-  call dein#add('rhysd/vim-clang-format')
   call dein#add('scrooloose/nerdtree')
-  call dein#add('tikhomirov/vim-glsl')
+  call dein#add('rhysd/vim-clang-format')
+  call dein#add('thinca/vim-quickrun')
+
+  call dein#add('keith/swift.vim')
+  " LSP
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('prabirshrestha/asyncomplete.vim')
+  call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 
   call dein#end()
   call dein#save_state()
@@ -32,85 +41,58 @@ endif
 
 filetype plugin indent on
 
-"カラースキーム設定
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
 
-" シンタックスハイライトを有効
 syntax on 
-" ファイルタイプ別インデント・プラグイン有効化
 filetype indent plugin on
 
-" 行番号
 set number
-
-" コンソールのタイトル表示
 set title
-
-" 対応するカッコの強調表示
 set showmatch
 
-" インデント設定
+" Indent
 set expandtab
 set tabstop=2
 set shiftwidth=2
 set smartindent
 
-" バックアップファイル設定
 set nobackup
 set noswapfile
-
-" 外部で変更された場合に読み直す
 set autoread
-
-" コマンド表示
 set showcmd
-
-" バックスペース
 set backspace=indent,eol,start
-
-" タグ設定
 set tags=./tags;
-
-" タブによるファイル名補完
 set wildmenu
-
-"タブ行を常に表示
 set showtabline=2
 
-"検索の大文字/小文字の区別
+" Search
+set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 set wrapscan
 
-" インクリメンタルサーチ有効
-set incsearch
-" ハイライトサーチ
-set hlsearch
-nnoremap <F3> :noh<CR>
-
-" カーソル位置を表示
 set ruler
-
-"statusline
+" StatusLine
 set laststatus=2
 
-" ビープ音を無効化
+" Disable beep
 set visualbell t_vb=
 set noerrorbells
 
-" 移動
+" Move
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up> gk
 
-" タグジャンプ
+" Tag jump
 nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <C-K> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
-" タブ切り替え
+" Tab option
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 
@@ -118,20 +100,47 @@ nnoremap <C-p> gT
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd BufNewFile,BufRead *.swift setfiletype swift
 
 " Use deoplete
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
-" Use neocomplete
-"let g:neocomplete#enable_at_startup = 1
+set clipboard+=unnamed
 
-" vimrcによる悪意のあるコマンド実行を防ぐ
+" vim-lsp
+
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_async_completion = 1
+
+"if executable('clangd')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'clangd',
+"        \ 'cmd': {server_info->['clangd']},
+"        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"        \ })
+"endif
+"
+"if executable('pyls')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'pyls',
+"        \ 'cmd': {server_info->['pyls']},
+"        \ 'whitelist': ['python'],
+"        \ })
+"endif
+
+if executable('sourcekit-lsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'sourcekit-lsp',
+        \ 'cmd': {server_info->['sourcekit-lsp']},
+        \ 'whitelist': ['swift'],
+        \ })
+endif
+
+autocmd FileType swift setlocal omnifunc=lsp#complete
+
 set secure
