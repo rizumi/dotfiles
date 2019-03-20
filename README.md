@@ -1,2 +1,2 @@
-#dotfiles
-設定ファイル管理リポジトリ
+# dotfiles
+
