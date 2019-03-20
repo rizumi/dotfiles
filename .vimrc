@@ -29,11 +29,12 @@ if dein#load_state(expand('~/.vim/bundles'))
   call dein#add('thinca/vim-quickrun')
 
   call dein#add('keith/swift.vim')
-  " LSP
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
   call dein#add('prabirshrestha/asyncomplete.vim')
   call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+
+  call dein#add('Shougo/deol.nvim')
 
   call dein#end()
   call dein#save_state()
