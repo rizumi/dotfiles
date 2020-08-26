@@ -33,8 +33,16 @@ if dein#load_state(expand('~/.vim/bundles'))
   call dein#add('prabirshrestha/vim-lsp')
   call dein#add('prabirshrestha/asyncomplete.vim')
   call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+  call dein#add('mattn/vim-lsp-settings')
 
   call dein#add('Shougo/deol.nvim')
+  call dein#add('itchyny/calendar.vim')
+  
+  call dein#add('twitvim/twitvim')
+
+  call dein#add('vim/killersheep')
+
+  call dein#add(expand('~/private/gosasyu.vim'))
 
   call dein#end()
   call dein#save_state()
@@ -134,21 +142,21 @@ let g:lsp_async_completion = 1
 "        \ })
 "endif
 
-if executable('sourcekit-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->['sourcekit-lsp']},
-        \ 'whitelist': ['swift'],
-        \ })
-endif
-
-if system('uname -r') =~ "Microsoft"
-  augroup Yank
-    autocmd!
-    autocmd TextYankPost * :call system('clip.exe ',@")
-  augroup END
-endif
+"if executable('sourcekit-lsp')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'sourcekit-lsp',
+"        \ 'cmd': {server_info->['sourcekit-lsp']},
+"        \ 'whitelist': ['swift'],
+"        \ })
+"endif
 
 autocmd FileType swift setlocal omnifunc=lsp#complete
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+let twitvim_browser_cmd = 'open' " for Mac
+let twitvim_force_ssl = 1 
+let twitvim_count = 40
 
 set secure
