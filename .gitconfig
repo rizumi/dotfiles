@@ -1,0 +1,17 @@
+[merge "mergepbx"]
+	name = Xcode project files merger
+	driver = mergepbx %O %A %B
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = izumi
+	email = rizumi222@gmail.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[core]
+	excludesfile = /Users/izumi/.gitignore_global
