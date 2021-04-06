@@ -156,4 +156,13 @@ tags
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,macos,intellij
 
+rizumi_icon_debug.imageset
+
+# git-of-theseus
+authors.json
+cohorts.json
+exts.json
+stack_plot.png
+survival.json
+survival_plot.png
 
