@@ -15,3 +15,5 @@
 	rebase = false
 [core]
 	excludesfile = /Users/izumi/.gitignore_global
+[ghq]
+	root = ~/src
