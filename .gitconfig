@@ -17,3 +17,6 @@
 	excludesfile = /Users/izumi/.gitignore_global
 [ghq]
 	root = ~/src
+[alias]
+  delete-merged-branch = "!f () { git branch --merged|egrep -v '\\*|develop|main'|xargs git branch -d; };f"
+
