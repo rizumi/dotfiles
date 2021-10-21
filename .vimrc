@@ -44,6 +44,8 @@ if dein#load_state(expand('~/.vim/bundles'))
 
   call dein#add(expand('~/private/gosasyu.vim'))
 
+  call dein#add('leafgarland/typescript-vim')
+
   call dein#end()
   call dein#save_state()
 endif
