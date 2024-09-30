@@ -161,4 +161,11 @@ let twitvim_browser_cmd = 'open' " for Mac
 let twitvim_force_ssl = 1 
 let twitvim_count = 40
 
+if !empty($WSL_DISTRO_NAME)
+  augroup Yank
+    au!
+    autocmd TextYankPost * :call system('clip.exe', @")
+  augroup END
+endif
+
 set secure
