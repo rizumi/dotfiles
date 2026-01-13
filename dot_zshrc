@@ -1,0 +1,22 @@
+export CLICOLOR=1
+export LSCOLORS="GxFxCxDxBxegedabagaced"
+alias ls='ls --color=auto'
+autoload -Uz compinit
+compinit -u
+
+function isWinDir {
+  local p
+  p="$(pwd -P)"
+  [[ "$p" == /mnt/* ]]
+}
+
+function git {
+  if isWinDir
+  then 
+    git.exe "$@"
+  else
+    /usr/bin/git "$@"
+  fi
+}
+
+eval "$(starship init zsh)"
