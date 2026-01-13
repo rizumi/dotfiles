@@ -4,6 +4,8 @@ alias ls='ls --color=auto'
 autoload -Uz compinit
 compinit -u
 
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 function isWinDir {
   local p
   p="$(pwd -P)"
@@ -18,5 +20,7 @@ function git {
     /usr/bin/git "$@"
   fi
 }
+{{   end }}
+{{ end }}
 
 eval "$(starship init zsh)"
