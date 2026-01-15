@@ -4,6 +4,7 @@ font-feature = "-calt"
 font-feature = "-dlig"
 font-feature = "-liga"
 
+theme = Catppuccin Mocha
 window-theme = "ghostty"
 background-opacity = 0.80
 
