@@ -11,15 +11,12 @@ success_symbol = "[→](bold green)"
 error_symbol = "[←](bold red)"
 
 [username]
-style_root = "bg:#9A348E"
-style_user = "bg:#9A348E"
-format = "[$user]($style)"
+format = "[$user]($style)) "
 show_always = true
 disabled = false
 
 [memory_usage]
 threshold = -1
 format = "[$symbol$ram_pct ]($style)"
-style = "bg:#DA627D"
-symbol = "🧛 "
+symbol = "RAM: "
 disabled = false
