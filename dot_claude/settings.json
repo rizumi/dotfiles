@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm:*)",
+      "Bash(rm -rf:*)",
+      "Bash(rmdir:*)",
+      "Bash(dd:*)",
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git rebase:*)",
+      "Bash(git force:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/.env*)",
+      "Read(id_rsa)",
+      "Read(id_ed25519)",
+      "Read(**/*_rsa)",
+      "Read(**/*_ed25519)",
+      "Read(**/private.key)",
+      "Read(**/secret.key)",
+      "Read(**/.credentials*)",
+      "Read(**/auth.token)",
+      "Read(**/api.key)",
+      "Write(.env*)",
+      "Write(**/secrets/**)",
+      "Write(**/.credentials*)",
+      "Bash(chmod 777:*)",
+      "Bash(chmod -R 777:*)",
+      "Bash(nc:*)",
+      "Bash(netcat:*)",
+      "Bash(telnet:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(yarn remove:*)",
+      "mcp__supabase__execute_sql"
+    ],
+    "additionalDirectories": [
+      "~/obsidian-notes"
+    ]
+  },
+  "language": "Japanese"
+}
