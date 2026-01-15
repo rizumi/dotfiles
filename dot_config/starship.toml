@@ -11,12 +11,12 @@ success_symbol = "[→](bold green)"
 error_symbol = "[←](bold red)"
 
 [username]
-format = "[$user]($style)) "
+format = "[$user]($style) "
 show_always = true
 disabled = false
 
 [memory_usage]
 threshold = -1
-format = "[$symbol$ram_pct ]($style)"
+format = "[$symbol$ram_pct]($style)"
 symbol = "RAM: "
 disabled = false
