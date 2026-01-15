@@ -9,6 +9,5 @@ background-opacity = 0.80
 
 quick-terminal-position = "center"
 quick-terminal-screen = "main"
-quick-terminal-size = "100%"
 quick-terminal-animation-duration = 0.3
 keybind = "global:opt+space=toggle_quick_terminal"
