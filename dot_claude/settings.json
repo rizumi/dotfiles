@@ -7,7 +7,6 @@
       "Bash(rm -rf:*)",
       "Bash(rmdir:*)",
       "Bash(dd:*)",
-      "Bash(git push:*)",
       "Bash(git reset --hard:*)",
       "Bash(git rebase:*)",
       "Bash(git force:*)",
@@ -40,6 +39,10 @@
     "additionalDirectories": [
       "~/obsidian-notes"
     ]
+  },
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true
   },
   "language": "Japanese"
 }
