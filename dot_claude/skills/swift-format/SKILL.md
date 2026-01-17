@@ -134,10 +134,30 @@ swift --version
 
 必要に応じてSwiftをアップデート。
 
-### 特定のファイルをフォーマットから除外したい場合
+### 特定のファイルやコードをフォーマットから除外したい場合
 
-- `.swift-formatignore`ファイルを作成（`.gitignore`と同じ形式）
-- 除外したいパスを記述
+ファイル全体を除外するには、ファイルの先頭にコメントを追加：
+
+```swift
+// swift-format-ignore-file
+```
+
+特定の宣言やステートメントのみ除外するには：
+
+```swift
+// swift-format-ignore
+func myFunction() {
+    // このフォーマットは保持される
+}
+```
+
+特定のルールのみ無効化：
+
+```swift
+// swift-format-ignore: RuleName1, RuleName2
+```
+
+**注意**: `.swift-formatignore`ファイルは存在しません。Swift formatはコメントベースのディレクティブを使用します。
 
 ## Resources
 
