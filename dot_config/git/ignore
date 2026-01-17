@@ -197,3 +197,8 @@ http-client.private.env.json
 
 ### CLAUDE CODE ###
 **/.claude/settings.local.json
+**/.claude/settings.local.json
+**/.claude/CLAUDE.local.md
+**/.claude/plans/
+**/.claude/**/*cache*
+**/.claude/**/*state*
