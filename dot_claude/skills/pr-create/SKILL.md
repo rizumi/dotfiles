@@ -32,3 +32,8 @@ user-invocable: true
 - PRタイトルはConventional Commits形式を推奨（例: `feat(UI): 新機能追加`）
 - `--assignee @me` で自分をAssigneeに設定
 - PR本文はHEREDOCを使用してフォーマットを保持
+- PR本文の末尾に必ず以下を追記:
+  ```
+  ---
+  Generated with [Claude Code](https://claude.ai/code)
+  ```
