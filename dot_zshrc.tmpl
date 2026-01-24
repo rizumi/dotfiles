@@ -37,16 +37,24 @@ alias chezmoi="~/bin/chezmoi"
 {{   end }}
 {{ end }}
 
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
+
+function ghq_fzf_cd() {
+  local selected
+  selected=$(ghq list -p 2>/dev/null | fzf \
+    --query "$LBUFFER" \
+    --prompt='ghq> ' \
+    --height=60% --border \
+    --cycle --exit-0 \
+    --preview 'cd {} && (git status -sb 2>/dev/null || true); echo; ls -la' \
+    --preview-window 'right,60%,border-left')
+
+  [[ -z "$selected" ]] && { zle redisplay; return 0; }
+
+  BUFFER="cd -- ${selected:q}"
+  zle accept-line
 }
-zle -N peco-src
-bindkey '^[' peco-src
+zle -N ghq_fzf_cd
+bindkey '^g' ghq_fzf_cd
 
 source <(fzf --zsh)
 
