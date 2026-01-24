@@ -56,6 +56,8 @@ function ghq_fzf_cd() {
 zle -N ghq_fzf_cd
 bindkey '^g' ghq_fzf_cd
 
+{{ if eq .chezmoi.os "darwin" }}
 source <(fzf --zsh)
+{{ end }}
 
 eval "$(starship init zsh)"
