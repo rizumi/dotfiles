@@ -1,0 +1,18 @@
+README.md
+CLAUDE.md
+
+{{- if ne .chezmoi.os "darwin" }}
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" }}
+.zshrc
+.zshenv
+.zprofile
+.bashrc
+.bash_profile
+.profile
+.config/zsh/**
+.config/fish/**
+.config/nvim/**
+.local/bin/**
+{{- end }}
