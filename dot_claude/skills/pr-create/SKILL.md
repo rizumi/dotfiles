@@ -32,6 +32,8 @@ user-invocable: true
 - PRタイトルはConventional Commits形式を推奨（例: `feat(UI): 新機能追加`）
 - `--assignee @me` で自分をAssigneeに設定
 - PR本文はHEREDOCを使用してフォーマットを保持
+- **baseブランチがmaster以外の場合**: 概要の先頭に `on: #<親PRの番号>` を記載して、どのPRに連なっているかを明示する
+  - 例: `--base feature/parent-branch` の場合、そのブランチのPR番号を `gh pr list` 等で確認し、概要に `on: #123` のように記載
 - PR本文の末尾に必ず以下を追記:
   ```
   ---
