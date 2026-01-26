@@ -35,5 +35,5 @@ user-invocable: true
 - PR本文の末尾に必ず以下を追記:
   ```
   ---
-  Generated with [Claude Code](https://claude.ai/code)
+  🤖 Generated with [Claude Code](https://claude.ai/code)
   ```
