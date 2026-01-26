@@ -45,5 +45,9 @@
     "example-skills@anthropic-agent-skills": true,
     "code-review@claude-plugins-official": true
   },
-  "language": "Japanese"
+  "language": "Japanese",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }
 }
