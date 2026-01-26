@@ -6,15 +6,34 @@ model_name=$(echo "$input" | grep -o '"display_name":"[^"]*"' | head -1 | sed 's
 current_dir=$(echo "$input" | grep -o '"current_dir":"[^"]*"' | head -1 | sed 's/"current_dir":"//;s/"//')
 cost=$(echo "$input" | grep -o '"total_cost_usd":[0-9.]*' | head -1 | sed 's/"total_cost_usd"://')
 ctx_percent=$(echo "$input" | grep -o '"used_percentage":[0-9.]*' | head -1 | sed 's/"used_percentage"://')
+input_tokens=$(echo "$input" | grep -o '"total_input_tokens":[0-9]*' | head -1 | sed 's/"total_input_tokens"://')
+output_tokens=$(echo "$input" | grep -o '"total_output_tokens":[0-9]*' | head -1 | sed 's/"total_output_tokens"://')
 
 model_name=${model_name:-"Claude"}
 current_dir=${current_dir:-$(pwd)}
 cost=${cost:-0}
 ctx_percent=${ctx_percent:-0}
+input_tokens=${input_tokens:-0}
+output_tokens=${output_tokens:-0}
 
 short_dir=$(basename "$current_dir")
 cost_display=$(printf "%.4f" "$cost" 2>/dev/null || echo "0.0000")
 ctx_int=$(printf "%.0f" "$ctx_percent" 2>/dev/null || echo "0")
+
+# トークン数をK単位でフォーマット
+format_tokens() {
+  local tokens=$1
+  if [ "$tokens" -ge 1000000 ]; then
+    printf "%.1fM" "$(echo "scale=1; $tokens/1000000" | bc)"
+  elif [ "$tokens" -ge 1000 ]; then
+    printf "%.1fK" "$(echo "scale=1; $tokens/1000" | bc)"
+  else
+    printf "%d" "$tokens"
+  fi
+}
+
+input_display=$(format_tokens "$input_tokens")
+output_display=$(format_tokens "$output_tokens")
 
 # Git ブランチ情報
 if [ -d "$current_dir" ]; then
@@ -63,6 +82,11 @@ else
 fi
 ctx_fg="\033[38;5;255m"
 
+# トークン: ティール系
+token_bg="\033[48;5;23m"
+token_fg="\033[38;5;255m"
+token_arrow_fg="\033[38;5;23m"
+
 # コスト: シアン系
 cost_bg="\033[48;5;30m"
 cost_fg="\033[38;5;255m"
@@ -92,7 +116,11 @@ fi
 
 # コンテキスト セグメント（プログレスバー付き）
 output+="${ctx_bg}${ctx_fg}  ${bar} ${ctx_int}% ${reset}"
-output+="${cost_bg}${ctx_arrow_fg}${arrow}${reset}"
+output+="${token_bg}${ctx_arrow_fg}${arrow}${reset}"
+
+# トークン セグメント
+output+="${token_bg}${token_fg}  ${input_display}↓ ${output_display}↑ ${reset}"
+output+="${cost_bg}${token_arrow_fg}${arrow}${reset}"
 
 # コスト セグメント
 output+="${cost_bg}${cost_fg}  \$${cost_display} ${reset}"
