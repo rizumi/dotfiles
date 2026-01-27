@@ -1,5 +1,0 @@
-[tools]
-chezmoi = "2.69.3"
-fzf = "latest"
-ghq = "latest"
-zellij = "latest"
