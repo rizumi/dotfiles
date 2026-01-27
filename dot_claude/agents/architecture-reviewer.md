@@ -1,7 +1,7 @@
 ---
 name: architecture-reviewer
 description: "PROACTIVELY use after implementing new system components or refactoring. Reviews software architecture decisions, design patterns, system structure, and technical design choices for coherence, scalability, and maintainability."
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob
 model: opus
 color: orange
 ---

@@ -1,7 +1,7 @@
 ---
 name: security-reviewer
 description: "PROACTIVELY use when implementing authentication, database queries, API endpoints, or file uploads. Reviews code for security vulnerabilities including SQL injection, XSS, CSRF, and authentication issues."
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob
 model: opus
 color: red
 ---

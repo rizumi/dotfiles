@@ -1,7 +1,7 @@
 ---
 name: performance-reviewer
 description: "PROACTIVELY use after implementing data processing or complex UI logic. Reviews code for performance issues including memory usage, CPU efficiency, rendering optimization, and algorithmic complexity."
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob
 model: opus
 color: yellow
 ---
