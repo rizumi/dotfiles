@@ -1,6 +1,7 @@
 ---
 name: swift-format
 description: Swift公式のformatツールを使用してSwiftコードをフォーマットするスキル。コードを書き終わった後、ファイルやプロジェクト全体のSwiftコードをフォーマットする必要がある場合に使用します。特定のプロジェクトに依存しない汎用的な構成で、.swift-formatファイルが存在しない場合はデフォルト設定を使用できます。
+allowed-tools: Read, Glob, Bash(swift format:*), Bash(ls:*), Bash(cp:*)
 ---
 
 # Swift Format

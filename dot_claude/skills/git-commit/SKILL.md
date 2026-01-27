@@ -1,6 +1,7 @@
 ---
 name: git-commit
 description: Create well-formatted git commits with clear, standalone commit messages following Conventional Commits format. Use this skill when the user explicitly requests to create a git commit or use phrases like "commit these changes", "make a commit", "commit this", or similar commit-related requests. This skill ensures commit messages are self-explanatory and prevents accidental commits.
+allowed-tools: Read, Bash(git:*), AskUserQuestion
 ---
 
 # Git Commit

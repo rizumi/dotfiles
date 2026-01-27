@@ -1,6 +1,7 @@
 ---
 name: pr-create
 description: Create a pull request with predefined template
+allowed-tools: Read, Glob, Bash(git:*), Bash(gh:*), AskUserQuestion
 disable-model-invocation: true
 user-invocable: true
 ---
