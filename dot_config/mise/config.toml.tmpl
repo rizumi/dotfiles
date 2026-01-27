@@ -2,9 +2,6 @@
 chezmoi = "2.69.3"
 fzf = "latest"
 ghq = "latest"
+{{- if ne .chezmoi.os "windows" }}
 zellij = "latest"
-{{- if eq .chezmoi.os "darwin" }}
-# macOS固有のツール
-{{- else if eq .chezmoi.os "linux" }}
-# Linux固有のツール
 {{- end }}
