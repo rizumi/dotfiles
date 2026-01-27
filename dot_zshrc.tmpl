@@ -35,7 +35,9 @@ function git {
 {{-   end }}
 {{- end }}
 
-eval "$(~/.local/bin/mise activate zsh)"
+if [ -s ${HOME}/.local/bin/mise ]; then
+  eval "$(${HOME}/.local/bin/mise activate zsh)"
+fi
 
 function ghq_fzf_cd() {
   local selected
