@@ -37,7 +37,11 @@
       "mcp__supabase__execute_sql"
     ],
     "additionalDirectories": [
+{{- if eq .chezmoi.os "windows" }}
+      "F:/obsidian-notes"
+{{- else }}
       "~/obsidian-notes"
+{{- end }}
     ]
   },
   "enabledPlugins": {
