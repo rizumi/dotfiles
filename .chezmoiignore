@@ -4,6 +4,7 @@ CLAUDE.md
 {{- if ne .chezmoi.os "darwin" }}
 .config/karabiner/**
 .config/ghostty/**
+.config/zellij/**
 {{- end }}
 
 {{- if eq .chezmoi.os "windows" }}
