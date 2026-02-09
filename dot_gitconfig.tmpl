@@ -13,7 +13,11 @@
 [core]
 	editor = nvim
 [ghq]
-	root = ~/src
+{{- if eq .chezmoi.os "windows" }}
+    root = F:/src
+{{- else }}
+    root = ~/src
+{{- end }}
 [alias]
   delete-merged-branch = "!f () { git branch --merged|egrep -v '\\*|develop|main'|xargs git branch -d; };f"
 
